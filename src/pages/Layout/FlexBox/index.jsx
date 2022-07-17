@@ -1,8 +1,8 @@
 import {Component} from "react";
-import GDSEButton from "../../../components/common/Button";
 import {withStyles} from "@mui/styles";
-import not_found from "../../../assets/img/404img.jpg"
-import {Link} from "react-router-dom";
+import {styleSheet} from "./style";
+import Typography from "@mui/material/Typography";
+
 
 
 
@@ -14,19 +14,20 @@ class FlexBoxLayout extends Component {
     render() {
         let {classes} = this.props
         return (
-            <div className={classes.container}>
-                <div className={classes.img_container}>
-                    <img src={not_found} alt=""/>
-                </div>
-                <Link to="/">
-                    <GDSEButton
-                        variant="contained"
-                        label="Back To HomePage"
-                    />
+          <div className={classes.container}>
+              <div className={classes.title_container}>
+                  <Typography variant="h4">
+                      Title Is Here
+                  </Typography>
 
+              </div>
+              <div className={classes.form_container}>
+                  <div className={classes.left_Form}></div>
+                  <div className={classes.right_form}></div>
+              </div>
+              <div className={classes.btn_container}></div>
+          </div>
 
-                </Link>
-            </div>
         )
     }
 }
