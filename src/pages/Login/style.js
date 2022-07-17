@@ -28,14 +28,17 @@ export const styleSheet = {
 
     },
     fillContainer: {
+        display:'flex',
+        flexDirection:'column',
         height: '60%',
         width: '100%',
-        backgroundColor: 'blue',
+        alignItems:'center',
+        justifyContent:'space-around',
+
     },
     btnContainer: {
         height: '20%',
-        width: '100%',
-        backgroundColor: 'green',
+
     }
 
 }

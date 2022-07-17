@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import Typography from '@mui/material/Typography';
 import {styleSheet} from "./style";
 import {withStyles} from "@mui/styles";
+import TextField from '@mui/material/TextField';
+import GDSEButton from "../../components/common/Button";
 
 class Login extends Component {
     constructor(props) {
@@ -17,9 +19,13 @@ class Login extends Component {
                         <Typography variant="h4">Login</Typography>
                     </div>
                     <div className={classes.fillContainer}>
+                        <TextField id="outlined-basic" label="User Name" variant="outlined" />
+                        <TextField id="outlined-basic" type="password" label="Password"  variant="outlined" />
 
                     </div>
-                    <div className={classes.btnContainer}></div>
+                    <div className={classes.btnContainer}>
+                        <GDSEButton variant="contained" label="Login"/>
+                    </div>
                 </div>
 
 
