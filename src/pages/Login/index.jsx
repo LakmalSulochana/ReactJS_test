@@ -4,6 +4,7 @@ import {styleSheet} from "./style";
 import {withStyles} from "@mui/styles";
 import TextField from '@mui/material/TextField';
 import GDSEButton from "../../components/common/Button";
+import IJSESnackBar from "../../components/common/SnackBar";
 
 class Login extends Component {
     constructor(props) {
@@ -14,7 +15,12 @@ class Login extends Component {
             fillData:{
                 user_name:'',
                 password:''
-            }
+            },
+           //for snack bar
+           open:false,
+            message:'',
+            severity:''
+
 
         }
     }
@@ -27,8 +33,20 @@ class Login extends Component {
         let fillData=this.state.fillData
         if (fillData.user_name==this.state.userName && fillData.password==this.state.pw){
             console.log("login success")
+            this.setState({
+                open:true,
+                message:'login success',
+                severity:'success'
+
+            })
         }else {
             console.log("password or user name Didn't match ")
+            this.setState({
+                open:true,
+                message:'password or user name Did not match',
+                severity:'error'
+
+            })
         }
 
 
@@ -72,6 +90,16 @@ class Login extends Component {
                                     }}/>
                     </div>
                 </div>
+                <IJSESnackBar
+                    open={this.state.open}
+                    onClose={()=>{
+                        this.setState({open:false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={1000}
+                    severity={this.state.severity}
+                    variant="filied"
+                />
 
 
             </div>
