@@ -5,6 +5,8 @@ import {TextField, Typography} from "@mui/material";
 import {styleSheet} from "./style";
 import GDSEButton from "../../components/common/Button";
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import PostService from "../../Services/PostService"
+import IJSESnackBar from "../../components/common/SnackBar";
 
 
 class Post extends Component {
@@ -17,13 +19,33 @@ class Post extends Component {
                 title:'',
                 body:''
 
-            }
+            },
+            alert:false,
+            message:'',
+            severity:''
         }
     }
 
-    handleSubmit(){
+    handleSubmit= async ()=>{
         console.log('save button clicked')
         console.log(this.state.formData)
+        let formData= this.state.formData
+        let response= await PostService.creatPost(formData);
+        if (response.status==201){
+            this.setState({
+                alert:true,
+                message:'post created success',
+                severity:'success'
+            })
+
+        }else {
+            this.setState({
+                alert: true,
+                message: 'post created unSuccess',
+                severity: 'error'
+            })
+        }
+
     }
     render() {
         const {classes} = this.props
@@ -96,6 +118,16 @@ class Post extends Component {
 
                 </Grid>
             </ValidatorForm>
+                <IJSESnackBar
+                    open={this.state.alert}
+                    onClose={()=>{
+                        this.setState({open:false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant="filled"
+                />
     </Fragment>
 
     )
